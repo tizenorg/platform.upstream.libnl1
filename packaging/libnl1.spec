@@ -31,14 +31,13 @@ kernels netlink sockets interface for network manipulation.
 %build
 %configure \
     --prefix=%_prefix \
-    --libdir=/%_lib \
+    --libdir=%_libdir \
     --includedir=%_includedir
 make %{?_smp_mflags}
 
 %install
-%makeinstall
+%make_install
 mkdir -p %buildroot/%_libdir/pkgconfig
-mv %buildroot/%_lib/pkgconfig/* %buildroot/%_libdir/pkgconfig
 
 %post -p /sbin/ldconfig
 
@@ -46,13 +45,13 @@ mv %buildroot/%_lib/pkgconfig/* %buildroot/%_libdir/pkgconfig
 
 %files
 %defattr(-,root,root)
-/%_lib/libnl*.so.*
+%_libdir/libnl*.so.*
 %doc COPYING 
 
 %files devel
 %defattr(-,root,root,0755)
 %_includedir/netlink/
-/%_lib/libnl*.so
+%_libdir/libnl*.so
 %_libdir/pkgconfig/*.pc
 
 %changelog
