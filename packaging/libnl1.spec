@@ -1,6 +1,6 @@
 Name:           libnl1
 Summary:        Convenience library for kernel netlink sockets
-Group:          Development/Libraries/Other
+Group:          System/Network
 License:        LGPL-2.1
 Version:        1.1
 Release:        1
@@ -17,7 +17,7 @@ kernels netlink sockets interface for network manipulation.
 %package devel
 License:        LGPL-2.1+
 Summary:        Convenience library for kernel netlink sockets
-Group:          Development/Libraries/Other
+Group:          Development/Libraries
 Requires:       %name = %version-%release
 Provides:       libnl-devel = %release-%version
 
@@ -46,7 +46,7 @@ mkdir -p %buildroot/%_libdir/pkgconfig
 %files
 %defattr(-,root,root)
 %_libdir/libnl*.so.*
-%doc COPYING 
+%license COPYING 
 
 %files devel
 %defattr(-,root,root,0755)
