@@ -7,6 +7,7 @@ Release:        1
 Url:            http://people.suug.ch/~tgr/libnl/
 Source:         http://people.suug.ch/~tgr/libnl/files/libnl-%version.tar.bz2
 Source99:       baselibs.conf
+Source1001: 	libnl1.manifest
 BuildRequires:  pkgconfig >= 0.23
 
 %description
@@ -27,6 +28,7 @@ kernels netlink sockets interface for network manipulation.
 
 %prep
 %setup -q -n libnl-%version
+cp %{SOURCE1001} .
 
 %build
 %configure \
@@ -44,11 +46,13 @@ mkdir -p %buildroot/%_libdir/pkgconfig
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %_libdir/libnl*.so.*
 %license COPYING 
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root,0755)
 %_includedir/netlink/
 %_libdir/libnl*.so
